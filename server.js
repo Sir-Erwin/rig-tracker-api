@@ -2,7 +2,7 @@
 const express = require('express');
 
 const app = express();
-const PORT = 3001; // You can change the port if needed
+const PORT = process.env.PORT || 3001; // You can change the port if needed
 
 // Hardcoded JSON data
 const dbData = {
