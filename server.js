@@ -48,7 +48,7 @@ const dbData = {
         { id: 2, performanceData: { production: 720, downtime: 10, efficiency: 86 } },
         { id: 3, performanceData: { production: 680, downtime: 12, efficiency: 84 } },
         { id: 4, performanceData: { production: 690, downtime: 9, efficiency: 87 } },
-        { id: 5, performanceData: { production: 710, downtime: 8, efficiency: 88 } }
+        { id: 5, performanceData: { production: 710, downtime: 8, efficiency: 50 } }
       ]
     },
     { 
