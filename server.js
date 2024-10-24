@@ -68,20 +68,42 @@ const dbData = {
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Endpoint to get all assets
-app.get('/assets', (req, res) => {
-  res.json(dbData.assets);
+app.get('/', (req, res) => {
+  res.send('Home Page');
 });
 
+try{
+  // Endpoint to get all assets
+  app.get('/assets', (req, res) => {
+    res.json(dbData.assets);
+});
+} catch(error){console.log(error);};
+
+
 // Endpoint to get a specific asset by ID
-app.get('/assets/:id', (req, res) => {
-  const assetId = req.params.id;
-  const asset = dbData.assets.find(a => a.id === assetId);
-  if (asset) {
-    res.json(asset);
-  } else {
-    res.status(404).json({ message: 'Asset not found' });
-  }
+try{
+  app.get('/assets/:id', (req, res) => {
+    const assetId = req.params.id;
+    const asset = dbData.assets.find(a => a.id === assetId);
+    if (asset) {
+      res.json(asset);
+    } else {
+      res.status(404).json({ message: 'Asset not found' });
+    }
+  });
+} catch(error){console.log(error);};
+
+// Catch-all route for invalid URLs (404)
+app.use((req, res, next) => {
+  res.status(404).json({
+    message: 'The requested URL was not found on this server.',
+  });
+});
+
+// Error handling middleware (optional for logging errors, etc.)
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Log the error for debugging
+  res.status(500).send('Something went wrong!');
 });
 
 // Start the server
